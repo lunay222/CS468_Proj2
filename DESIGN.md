@@ -13,10 +13,7 @@ The AI Context-Aware Study Coach is a mobile application that leverages AI to tr
 │  │   Camera     │  │   Display    │  │   Audio/TTS   │         │
 │  │  (Input)     │  │  (Output)    │  │   (Output)    │         │
 │  └──────────────┘  └──────────────┘  └──────────────┘         │
-│  ┌──────────────┐                                             │
-│  │  Vibration   │                                             │
-│  │  (Output)    │                                             │
-│  └──────────────┘                                             │
+│                                                                │
 └────────────────────┬────────────────────────────────────────────┘
                      │
                      │ HTTP/REST API
