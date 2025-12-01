@@ -40,7 +40,7 @@ The AI Study Coach app allows you to:
 ## Project Structure
 
 ```
-CS468_Project2/
+CS468_Proj2/
 ├── ocr-service/            # OCR Microservice (FastAPI)
 │   ├── main.py            # OCR service application
 │   ├── requirements.txt   # Python dependencies
@@ -49,21 +49,25 @@ CS468_Project2/
 │   ├── main.py           # Gateway application
 │   ├── requirements.txt  # Python dependencies
 │   └── Dockerfile        # Gateway container config
-├── mobile-app/            # React Native mobile app
+├── mobile-app/            # React Native mobile app (Expo)
 │   ├── App.js            # Main app component
 │   ├── services/         # API service layer
 │   │   └── api.js        # API Gateway client
+│   ├── utils/            # Utility functions
+│   │   └── ipDetector.js # Automatic IP detection
 │   └── package.json      # Node dependencies
 ├── tests/                 # Comprehensive test suite
 │   ├── test_ocr_service.py    # OCR unit tests
 │   ├── test_api_gateway.py    # Gateway unit tests
 │   ├── test_integration.py    # Integration tests
+│   ├── test_backend.py        # Backend API tests
 │   ├── TESTING_WALKTHROUGH.md  # Testing guide
 │   └── requirements.txt       # Test dependencies
 ├── docker-compose.yml     # Docker orchestration (all services)
 ├── DESIGN.md             # Complete architecture design
-├── AI_CODE_DOCUMENTATION.md # AI-generated code documentation
 ├── SETUP_AND_RUN.md      # Setup and run instructions
+├── TESTING_REPORT.md     # Testing documentation
+├── REFLECTION.md         # Development reflection
 └── README.md             # This file
 ```
 
@@ -79,7 +83,7 @@ CS468_Project2/
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/egarciaez/CS468_Proj2.git
+git clone <YOUR_REPO_URL>
 cd CS468_Proj2
 ```
 
@@ -112,12 +116,12 @@ curl http://localhost:11434/api/tags
 ### 4. Run Tests
 
 ```bash
-# Install test dependencies
+# Install test dependencies (including uvicorn for API gateway imports)
 pip install -r tests/requirements.txt
-pip install -r backend/requirements.txt
+pip install uvicorn python-multipart
 
-# Run tests
-pytest tests/test_backend.py -v
+# Set Python path and run tests
+PYTHONPATH=/path/to/project/api-gateway:$PYTHONPATH pytest tests/ -v
 ```
 
 ### 5. Start Mobile App
@@ -214,19 +218,26 @@ Response: {"success": true, "text": "extracted text"}
 - `TESSERACT_CMD`: Tesseract executable path (default: `/usr/bin/tesseract`)
 
 **Mobile App** (in `mobile-app/services/api.js`):
-- Update `DEFAULT_API_BASE_URL` to your computer's IP address (e.g., `http://192.168.1.100:8000`)
+- The app **automatically detects** your computer's IP address on startup
+- If auto-detection fails, you can manually configure the IP in the app's Settings screen
+- The `DEFAULT_API_BASE_URL` is used as a fallback if auto-detection fails
 
 ## Development
 
 ### Backend Development
 
 ```bash
-# Install dependencies
-cd backend
+# API Gateway Development
+cd api-gateway
 pip install -r requirements.txt
 
-# Run locally (requires Ollama running)
+# Run locally (requires Ollama and OCR service running)
 uvicorn main:app --reload --host 0.0.0.0 --port 8000
+
+# OCR Service Development
+cd ocr-service
+pip install -r requirements.txt
+uvicorn main:app --reload --host 0.0.0.0 --port 8001
 ```
 
 ### Mobile App Development
@@ -257,11 +268,12 @@ All tests are designed to work without requiring services to be running (using m
 
 ### Run All Tests
 ```bash
-# Install test dependencies
+# Install test dependencies (including uvicorn for API gateway imports)
 pip install -r tests/requirements.txt
+pip install uvicorn python-multipart
 
-# Run all tests
-pytest tests/ -v
+# Set Python path and run all tests (from project root)
+PYTHONPATH=$(pwd)/api-gateway:$PYTHONPATH pytest tests/ -v
 ```
 
 ### Run Specific Test Suites
