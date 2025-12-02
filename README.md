@@ -321,7 +321,6 @@ docker exec study-coach-ollama ollama pull llama3.2:1b
 - **SETUP_AND_RUN.md**: Step-by-step setup and run instructions
 - **tests/TESTING_WALKTHROUGH.md**: Comprehensive testing guide with debugging walkthroughs
 - **TESTING_REPORT.md**: Testing documentation with results
-- **REFLECTION.md**: Development reflection on AI-assisted development experience
 
 ## Contributing
 
