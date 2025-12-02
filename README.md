@@ -1,6 +1,6 @@
 # AI Context-Aware Study Coach
 
-A complete microservice-based mobile application that uses the phone camera (hardware input) to scan notes and provides AI-generated **multiple choice quizzes**, summaries, and flashcards. Features hardware outputs including display, TTS audio, and vibration alerts.
+A complete microservice-based mobile application that uses the phone camera (hardware input) to scan notes and provides AI-generated **multiple choice quizzes**, summaries, and flashcards. Features hardware outputs including display, and TTS audio.
 
 ## What It Does
 
@@ -14,7 +14,7 @@ The AI Study Coach app allows you to:
 4. **Study interactively** with:
    - Immediate feedback on quiz answers (correct ✓ / incorrect ✗)
    - Text-to-speech to hear questions and summaries
-   - Haptic vibration feedback for interactions
+
 
 ## Features
 
