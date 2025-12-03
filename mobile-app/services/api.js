@@ -6,7 +6,6 @@
 // Default API URL - will be auto-detected on app startup
 // Fallback IP if auto-detection fails (users can also configure in settings)
 const DEFAULT_API_BASE_URL = 'http://192.168.1.100:8000'; // Default fallback IP address
-//const DEFAULT_API_BASE_URL = 'http://192.168.1.128:8000'; // Fallback IP address
 
 class StudyCoachAPI {
   // Store the API base URL - can be set via setBaseURL()
