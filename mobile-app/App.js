@@ -25,10 +25,9 @@ import * as ImagePicker from 'expo-image-picker';
 import * as Speech from 'expo-speech';
 import StudyCoachAPI from './services/api';
 import { getBackendURL, detectBackendIP } from './utils/ipDetector';
-
-const DEFAULT_API_URL = 'http://192.168.1.100:8000';
 // Default fallback IP - will be auto-detected on startup
-//const DEFAULT_API_URL = 'http://192.168.1.128:8000';
+const DEFAULT_API_URL = 'http://192.168.1.100:8000';
+
 
 export default function App() {
   const [mode, setMode] = useState('home'); // 'home', 'results', 'settings', 'scanning'
